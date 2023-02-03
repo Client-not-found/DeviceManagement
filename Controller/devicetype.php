@@ -1,6 +1,6 @@
 <?php
 
-function dm_init() {
+function dm_device() {
 	//create a new taxonomy
 	register_taxonomy(
 		'Geraete-Typen',
@@ -13,4 +13,4 @@ function dm_init() {
 	);
 }
 
-add_action('init', 'dm_init');
+add_action('init', 'dm_device');

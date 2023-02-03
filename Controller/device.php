@@ -12,4 +12,6 @@ function dm_create_device() {
         'menu_icon' => 'dashicons-desktop',
         'rewrite' => array('slug' => 'devices'),
     ));
+
+    add_metadata( 'dm_device', get_queried_object_id(), 'dm_log', 1, false);
 }

@@ -10,15 +10,23 @@
  * Author URI:        https://www.business-design.ch/ueber-uns/team/
  */
 
-require_once plugin_dir_path(__FILE__) . 'admin-menu.php';
 require_once plugin_dir_path(__FILE__) . 'View/settingspage.php';
-require_once plugin_dir_path(__FILE__) . 'device.php';
-require_once plugin_dir_path(__FILE__) . 'taxonomy.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/device.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/devicetype.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/location.php';
 
-/*register_activation_hook(
+function dm_activate()
+{
+    add_role('it-administrator', 'IT-Administrator', array(get_role( 'administrator' )->capabilities,));
 
-);
+    $role = get_role('it-administrator');
+    $role->add_cap( 'show_worth' );
+}
 
-register_deactivation_hook(
+function dm_deactivate()
+{
+    remove_role('it-administrator');
+}
 
-);*/
+register_activation_hook( __FILE__, 'dm_activate' );
+register_deactivation_hook( __FILE__, 'dm_deactivate' );
