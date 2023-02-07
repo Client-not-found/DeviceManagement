@@ -1,7 +1,7 @@
 <?php
 
 function dm_location() {
-    //create a new taxonomy
+    //Erstelle die Kategorie für die Orte
     register_taxonomy(
         'standort',
         array('category', 'dm_device'),

@@ -1,7 +1,7 @@
 <?php
 
 function dm_device() {
-	//create a new taxonomy
+	//Erstelle eine neue Kategorie für den Geräte Typ
 	register_taxonomy(
 		'Geraete-Typen',
 		array('category', 'dm_device'),
