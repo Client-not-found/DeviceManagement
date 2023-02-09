@@ -34,8 +34,8 @@ get_header(); ?>
                             'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'twentyseventeen' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'twentyseventeen' ) . '</span> <span class="nav-title">%title<span class="nav-title-icon-wrapper">' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ) . '</span></span>',
                         )
                     );
-                echo "Hello World";
                 endwhile; // End the loop.
+                echo "Hello World";
                 ?>
 
             </main><!-- #main -->

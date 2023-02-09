@@ -11,7 +11,6 @@
  */
 
 require_once plugin_dir_path(__FILE__) . 'Controller/device.php';
-require_once plugin_dir_path(__FILE__) . 'View/dm_device.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/devicetype.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/location.php';
 
