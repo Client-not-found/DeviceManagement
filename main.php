@@ -11,8 +11,10 @@
  */
 
 require_once plugin_dir_path(__FILE__) . 'Controller/device.php';
-require_once plugin_dir_path(__FILE__) . 'Controller/devicetype.php';
-require_once plugin_dir_path(__FILE__) . 'Controller/location.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceLocation.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceLog.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceType.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceWorth.php';
 
 function dm_activate()
 {
