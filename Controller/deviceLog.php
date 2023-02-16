@@ -16,10 +16,8 @@ function dm_add_devicelog() {
 
 function dm_devicelog_box_html() {
     ?>
-    <form>
         <label for="dm_devicelog">Geräte Log:</label>
-        <input type="text" id="dm_devicelog" name="dm_devicelog"><br>
-    </form>
+        <input type="text" id="dm_devicelog" name="dm_devicelog" />
 
     <?php
 }
@@ -43,9 +41,9 @@ add_filter('the_content', 'dm_display_devicelog');
 function dm_display_devicelog( $content ) {
     if(get_post_type () != "dm_device") return $content;
     {
-        //if (user_can(wp_get_current_user(), 'show_devicelog')) {
-            return $content . "<div class='devicelog'>" . get_post_meta(get_the_ID(), 'dm_devicelog', true) . " CHF</div>";
-        //}
+        if (user_can(wp_get_current_user(), 'show_devicelog')) {
+            return $content . "<div class='dm_devicelog'>" . get_post_meta(get_the_ID(), 'dm_devicelog', true);
+        }
 
     }
 

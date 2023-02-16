@@ -15,6 +15,7 @@ require_once plugin_dir_path(__FILE__) . 'Controller/deviceLocation.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceLog.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceType.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceWorth.php';
+require_once plugin_dir_path(__FILE__) . 'Model/device.php';
 
 function dm_activate()
 {
@@ -23,6 +24,10 @@ function dm_activate()
 
     $role = get_role('it-administrator');
     $role->add_cap( 'show_worth' );
+    $role->add_cap( 'show_devicelog');
+
+    $rolemitarbeiter = get_role('it-mitarbeiter');
+    $rolemitarbeiter->add_cap( 'show_devicelog');
 }
 
 function dm_deactivate()

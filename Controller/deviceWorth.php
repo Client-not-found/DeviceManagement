@@ -43,7 +43,7 @@ function dm_display_worth( $content ) {
     if(get_post_type () != "dm_device") return $content;
     {
         if (user_can(wp_get_current_user(), 'show_worth')) {
-            return $content . "<div class='worth'>" . get_post_meta(get_the_ID(), 'dm_worth', true) . " CHF</div>";
+            return $content . "<div class='worth'>" . get_post_meta(get_the_ID(), 'dm_worth', true);
         }
 
     }
