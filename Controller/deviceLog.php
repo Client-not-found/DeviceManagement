@@ -16,22 +16,22 @@ function dm_add_devicelog() {
 
 function dm_devicelog_box_html() {
     ?>
-        <label for="dm_devicelog">Geräte Log:</label>
-        <input type="text" id="dm_devicelog" name="dm_devicelog" />
+        <label for="<?php echo dm_getMetaId() ?>">Geräte Log:</label>
+        <input type="text" id="<?php echo dm_getMetaId() ?>" name="<?php echo dm_getMetaId() ?>" />
 
     <?php
 }
 
 function dm_devicelog() {
-    echo get_post_meta( get_the_ID(), "dm_devicelog", true);
+    echo get_post_meta( get_the_ID(), dm_getMetaId(), true);
 }
 
 function dm_save_devicelog($post_id) {
-    if (array_key_exists('dm_devicelog', $_POST)){
+    if (array_key_exists(dm_getMetaId(), $_POST)){
         update_post_meta(
             $post_id,
-            'dm_devicelog',
-            $_POST['dm_devicelog']
+            dm_getMetaId(),
+            $_POST[dm_getMetaId()]
         );
     }
 
@@ -41,9 +41,9 @@ add_filter('the_content', 'dm_display_devicelog');
 function dm_display_devicelog( $content ) {
     if(get_post_type () != "dm_device") return $content;
     {
-        if (user_can(wp_get_current_user(), 'show_devicelog')) {
-            return $content . "<div class='dm_devicelog'>" . get_post_meta(get_the_ID(), 'dm_devicelog', true);
-        }
+        //if (user_can(wp_get_current_user(), 'show_devicelog')) {
+            return $content . "<div class='dm_devicelog'>" . dm_getLog(get_the_ID());
+        //}
 
     }
 
