@@ -15,18 +15,19 @@ function dm_getMetaId() {
     $resultArray = $resultArray + 1;
 
     //Erstellt den Formular name für die Metabox
-    $result = 'dm_devicelog' . $resultArray;
+    $result = 'dm_devicehistory' . $resultArray;
 
     return $result;
 }
 
-function dm_getLog($post_id)
+function dm_getHistory($post_id)
 {
     global $wpdb;
+    $prefix = $wpdb->prefix;
 
-    $sql = $wpdb->get_results("SELECT meta_value FROM U3RH3eLEAQ_postmeta WHERE meta_key Like 'dm_devicelog%' AND post_id = " . $post_id);
-    foreach ($sql as $log) {
-        echo $log->meta_value; ?> <br><?php
+    $sql = $wpdb->get_results("SELECT meta_value FROM " .$prefix ."postmeta WHERE meta_key Like 'dm_devicehistory%' AND post_id = " . $post_id);
+    foreach ($sql as $history) {
+        echo "<div class='dm_devicehistory'>" . $history->meta_value . "</div><br>";
     }
 
 }

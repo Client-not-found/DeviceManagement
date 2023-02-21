@@ -42,8 +42,10 @@ add_filter('the_content', 'dm_display_worth');
 function dm_display_worth( $content ) {
     if(get_post_type () != "dm_device") return $content;
     {
+        echo $content;
+
         if (user_can(wp_get_current_user(), 'show_worth')) {
-            return $content . "<div class='worth'>" . get_post_meta(get_the_ID(), 'dm_worth', true);
+            return "<div class='worth'>" . get_post_meta(get_the_ID(), 'dm_worth', true);
         }
 
     }

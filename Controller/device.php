@@ -3,9 +3,9 @@
 
 add_action('init', 'dm_create_device');
 add_action('add_meta_boxes', 'dm_add_worth');
-add_action('add_meta_boxes', 'dm_add_devicelog');
+add_action('add_meta_boxes', 'dm_add_devicehistory');
 add_action('save_post', 'dm_save_postdata');
-add_action('save_post', 'dm_save_devicelog');
+add_action('save_post', 'dm_save_devicehistory');
 
 //Erstelle den Post Type Device
 function dm_create_device() {
