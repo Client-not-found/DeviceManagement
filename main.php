@@ -15,7 +15,7 @@ require_once plugin_dir_path(__FILE__) . 'Controller/deviceLocation.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceHistory.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceType.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceWorth.php';
-require_once plugin_dir_path(__FILE__) . 'Model/device.php';
+require_once plugin_dir_path(__FILE__) . 'Model/deviceHistory.php';
 
 /**
  * Wenn das Plugin aktiviert wird, wird diese funktion ausgeführt.
