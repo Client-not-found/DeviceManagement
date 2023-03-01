@@ -16,17 +16,18 @@ require_once plugin_dir_path(__FILE__) . 'Controller/deviceHistory.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceType.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceWorth.php';
 require_once plugin_dir_path(__FILE__) . 'Model/deviceHistory.php';
+//require_once plugin_dir_path(__FILE__) . 'View/single-dm_device.php';
+
+var_dump(get_header());
 
 /**
- * Wenn das Plugin aktiviert wird, wird diese funktion ausgeführt.
+ * Wenn das Plugin aktiviert wird, erstellt diese Funktion zwei Rollen und weist ihnen Berechtigungen zu.
  *
  * In dieser Funktion werden die Rollen it-administrator und it-mitarbeiter hinzugefügt.
  * Zusätzlich wird die Berechtigung "show_worth" und "show_devicehistory" hinzugefügt.
  *
  * @since 1.1.4
  *
- * @param type $var Description.
- * @param type $var Optional. Description. Default.
  * @return void.
  */
 function dm_activate()
@@ -42,6 +43,15 @@ function dm_activate()
     $rolemitarbeiter->add_cap( 'show_history');
 }
 
+/**
+ * Wenn das Plugin deaktiviert wird, entfernt dieses Plugin die Rollen, welche beim Installieren hinzugefügt werden.
+ *
+ * Diese Funktion entfernt die Rollen it-administrator und it-mitarbeiter.
+ *
+ * @since 1.1.4
+ *
+ * @return void.
+ */
 function dm_deactivate()
 {
     remove_role('it-administrator');

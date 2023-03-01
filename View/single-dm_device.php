@@ -1,47 +1,48 @@
 <?php
 /**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * The template for displaying all single posts and attachments
  *
  * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since Twenty Seventeen 1.0
- * @version 1.0
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
  */
 
 get_header(); ?>
 
-    <div class="wrap">
-        <div id="primary" class="content-area">
-            <main id="main" class="site-main">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
 
-                <?php
-                // Start the Loop.
-                while ( have_posts() ) :
-                    the_post();
+            <?php
+            // Start the loop.
+            while ( have_posts() ) : the_post();
 
-                    get_template_part( 'template-parts/post/content', 'device' );
+                /*
+                 * Include the post format-specific template for the content. If you want to
+                 * use this in a child theme, then include a file called called content-___.php
+                 * (where ___ is the post format) and that will be used instead.
+                 */
+                get_template_part( 'content', get_post_format() );
 
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if ( comments_open() || get_comments_number() ) :
-                        comments_template();
-                    endif;
+                // If comments are open or we have at least one comment, load up the comment template.
+                if ( comments_open() || get_comments_number() ) :
+                    comments_template();
+                endif;
 
-                    the_post_navigation(
-                        array(
-                            'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'twentyseventeen' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'twentyseventeen' ) . '</span> <span class="nav-title"><span class="nav-title-icon-wrapper">' . twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '</span>%title</span>',
-                            'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'twentyseventeen' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'twentyseventeen' ) . '</span> <span class="nav-title">%title<span class="nav-title-icon-wrapper">' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ) . '</span></span>',
-                        )
-                    );
-                endwhile; // End the loop.
-                echo "Hello World";
-                ?>
+                // Previous/next post navigation.
+                the_post_navigation( array(
+                    'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .
+                        '<span class="screen-reader-text">' . __( 'Next post:', 'twentyfifteen' ) . '</span> ' .
+                        '<span class="post-title">%title</span>',
+                    'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentyfifteen' ) . '</span> ' .
+                        '<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
+                        '<span class="post-title">%title</span>',
+                ) );
 
-            </main><!-- #main -->
-        </div><!-- #primary -->
-        <?php get_sidebar(); ?>
-    </div><!-- .wrap -->
+                // End the loop.
+            endwhile;
+            ?>
 
-<?php
-get_footer();
+        </main><!-- .site-main -->
+    </div><!-- .content-area -->
+
+<?php get_footer(); ?>
