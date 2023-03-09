@@ -15,10 +15,9 @@ require_once plugin_dir_path(__FILE__) . 'Controller/deviceLocation.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceHistory.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceType.php';
 require_once plugin_dir_path(__FILE__) . 'Controller/deviceWorth.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceTemplate.php';
+require_once plugin_dir_path(__FILE__) . 'Controller/deviceRedirectAfterLogin.php';
 require_once plugin_dir_path(__FILE__) . 'Model/deviceHistory.php';
-//require_once plugin_dir_path(__FILE__) . 'View/single-dm_device.php';
-
-var_dump(get_header());
 
 /**
  * Wenn das Plugin aktiviert wird, erstellt diese Funktion zwei Rollen und weist ihnen Berechtigungen zu.
@@ -26,21 +25,22 @@ var_dump(get_header());
  * In dieser Funktion werden die Rollen it-administrator und it-mitarbeiter hinzugefügt.
  * Zusätzlich wird die Berechtigung "show_worth" und "show_devicehistory" hinzugefügt.
  *
+ * @return void.
  * @since 1.1.4
  *
- * @return void.
  */
 function dm_activate()
 {
-    add_role('it-administrator', 'IT-Administrator', array(get_role( 'administrator' )->capabilities,));
-    add_role('it-mitarbeiter', 'IT-Mitarbeiter', array(get_role( 'editor' )->capabilities,));
+    add_role('it-administrator', 'IT-Administrator', array(get_role('administrator')->capabilities,));
+    add_role('it-mitarbeiter', 'IT-Mitarbeiter', array(get_role('editor')->capabilities,));
 
     $role = get_role('it-administrator');
-    $role->add_cap( 'show_history');
-    $role->add_cap( 'show_worth' );
+    $role->add_cap('show_history');
+    $role->add_cap('show_worth');
+    $role->add_cap('show_details');
 
     $rolemitarbeiter = get_role('it-mitarbeiter');
-    $rolemitarbeiter->add_cap( 'show_history');
+    $rolemitarbeiter->add_cap('show_history');
 }
 
 /**
@@ -48,9 +48,9 @@ function dm_activate()
  *
  * Diese Funktion entfernt die Rollen it-administrator und it-mitarbeiter.
  *
+ * @return void.
  * @since 1.1.4
  *
- * @return void.
  */
 function dm_deactivate()
 {
@@ -58,5 +58,5 @@ function dm_deactivate()
     remove_role('it-mitarbeiter');
 }
 
-register_activation_hook( __FILE__, 'dm_activate' );
-register_deactivation_hook( __FILE__, 'dm_deactivate' );
+register_activation_hook(__FILE__, 'dm_activate');
+register_deactivation_hook(__FILE__, 'dm_deactivate');

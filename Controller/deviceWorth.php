@@ -87,7 +87,7 @@ function dm_display_worth( $content ) {
         echo $content;
 
         if (user_can(wp_get_current_user(), 'show_worth')) {
-            return "<div class='worth'>" . get_post_meta(get_the_ID(), 'dm_worth', true);
+            return '<div>Wert: ' . get_post_meta(get_the_ID(), 'dm_worth', true) . '</div>';
         }
 
     }
